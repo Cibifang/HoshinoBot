@@ -1,0 +1,27 @@
+version: "3"
+services:
+  bot:
+    build: .
+    ports:
+      - "9222:9222"
+    #env_file: .env
+    restart: on-failure
+    volumes:
+      - .:/home/HoshinoBot/HoshinoBot
+    networks:
+      - bot_net
+
+  go-cqhttp:
+    image: nanahira/go-cqhttp
+    restart: always
+    volumes:
+      - ./config.json:/data/config.json
+      - ./device.json:/data/device.json
+    networks:
+      - bot_net
+    stdin_open: true
+    tty: true
+
+networks:
+  bot_net:
+    driver: bridge
