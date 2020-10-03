@@ -1,4 +1,4 @@
-from hoshino import Service, priv
+from hoshino import Service, priv, config
 from hoshino.typing import CQEvent
 
 sv = Service('_help_', manage_priv=priv.SUPERUSER, visible=False)
@@ -12,7 +12,7 @@ TOP_MANUAL = '''
 
 [!帮助] 会战管理v2
 [怎么拆日和] 竞技场查询
-[星乃来发十连] 转蛋模拟
+[{nickname}来发十连] 转蛋模拟
 [pcr速查] 常用网址
 [官漫132] 四格漫画（日）
 [切噜一下] 切噜语转换
@@ -33,7 +33,7 @@ TOP_MANUAL = '''
 ※服务器运行及开发维护需要成本，赞助支持请私戳作者
 ※您的支持是本bot更新维护的动力
 ※※调教时请注意使用频率，您的滥用可能会导致bot账号被封禁
-'''.strip()
+'''.format(nickname=config.NICKNAME).strip()
 
 def gen_bundle_manual(bundle_name, service_list, gid):
     manual = [bundle_name]

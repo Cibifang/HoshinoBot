@@ -1,9 +1,10 @@
 import random
-from hoshino import Service, R
+from hoshino import Service, R, config
 from hoshino.typing import CQEvent
 from hoshino.util import DailyNumberLimiter
 
-sv = Service('pcr-login-bonus', bundle='pcr娱乐', help_='[星乃签到] 给主さま盖章章')
+sv = Service('pcr-login-bonus', bundle='pcr娱乐',
+    help_='[{nickname}签到] 给主さま盖章章'.format(nickname=config.NICKNAME))
 
 lmt = DailyNumberLimiter(1)
 login_presents = [
